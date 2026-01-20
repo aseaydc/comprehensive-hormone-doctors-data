@@ -730,34 +730,34 @@
             
             if (adrenalPhase === 1) {
                 findings.push('Adrenal Phase 1: Early HPA axis dysfunction with suboptimal diurnal cortisol pattern');
-                protocol.push({ product: 'Adreno Code', phase: 1, priority: 'Core' });
-                protocol.push({ product: 'Lymph 1 Acute', phase: 1, priority: 'Core' });
-                protocol.push({ product: 'HPA Axis LF', phase: 1, priority: 'Core' });
-                protocol.push({ product: 'Camu Camu Vitamin C Liposome', phase: 1, priority: 'Support' });
-                protocol.push({ product: 'Licro Intrinsic', phase: 1, priority: 'Support' });
+                protocol.push({ product: 'Adreno Code', phase: 1, priority: 'Primary' });
+                protocol.push({ product: 'Lymph 1 Acute', phase: 1, priority: 'Primary' });
+                protocol.push({ product: 'HPA Axis LF', phase: 1, priority: 'Primary' });
+                protocol.push({ product: 'Camu Camu Vitamin C Liposome', phase: 1, priority: 'Secondary' });
+                protocol.push({ product: 'Licro Intrinsic', phase: 1, priority: 'Secondary' });
             } else if (adrenalPhase === 2) {
                 findings.push('Adrenal Phase 2: Resistance stage with declining cortisol output');
-                protocol.push({ product: 'Adreno Code', phase: 1, priority: 'Core' });
-                protocol.push({ product: 'Lymph 2 Matrix', phase: 1, priority: 'Core' });
-                protocol.push({ product: 'Adrenal LF', phase: 1, priority: 'Core' });
-                protocol.push({ product: 'HPA Axis LF', phase: 1, priority: 'Core' });
-                protocol.push({ product: 'Camu Camu Vitamin C Liposome', phase: 1, priority: 'Support' });
-                protocol.push({ product: 'Licro Intrinsic', phase: 1, priority: 'Support' });
+                protocol.push({ product: 'Adreno Code', phase: 1, priority: 'Primary' });
+                protocol.push({ product: 'Lymph 2 Matrix', phase: 1, priority: 'Primary' });
+                protocol.push({ product: 'Adrenal LF', phase: 1, priority: 'Primary' });
+                protocol.push({ product: 'HPA Axis LF', phase: 1, priority: 'Primary' });
+                protocol.push({ product: 'Camu Camu Vitamin C Liposome', phase: 1, priority: 'Secondary' });
+                protocol.push({ product: 'Licro Intrinsic', phase: 1, priority: 'Secondary' });
             } else if (adrenalPhase === 3) {
                 findings.push('Adrenal Phase 3: Exhaustion/failure requiring comprehensive support');
-                protocol.push({ product: 'Adreno Code', phase: 1, priority: 'Core' });
-                protocol.push({ product: 'Lymph 3 Chronic', phase: 1, priority: 'Core' });
-                protocol.push({ product: 'Adrenal LF', phase: 1, priority: 'Core' });
-                protocol.push({ product: 'HPA Axis LF', phase: 1, priority: 'Core' });
-                protocol.push({ product: 'Pregnenolone Liposomal Drops', phase: 1, priority: 'Core' });
-                protocol.push({ product: 'DHEA Liposomal Drops', phase: 1, priority: 'Core' });
-                protocol.push({ product: 'Licro Intrinsic', phase: 1, priority: 'Support' });
+                protocol.push({ product: 'Adreno Code', phase: 1, priority: 'Primary' });
+                protocol.push({ product: 'Lymph 3 Chronic', phase: 1, priority: 'Primary' });
+                protocol.push({ product: 'Adrenal LF', phase: 1, priority: 'Primary' });
+                protocol.push({ product: 'HPA Axis LF', phase: 1, priority: 'Primary' });
+                protocol.push({ product: 'Pregnenolone Liposomal Drops', phase: 1, priority: 'Secondary' });
+                protocol.push({ product: 'DHEA Liposomal Drops', phase: 1, priority: 'Secondary' });
+                protocol.push({ product: 'Licro Intrinsic', phase: 1, priority: 'Secondary' });
             }
             
             if (dheaEval && dheaEval.status === 'low') {
                 findings.push('Low DHEA: DHEA levels below reference range, requiring supplementation');
                 if (!protocol.find(p => p.product === 'DHEA Liposomal Drops')) {
-                    protocol.push({ product: 'DHEA Liposomal Drops', phase: 1, priority: 'Core' });
+                    protocol.push({ product: 'DHEA Liposomal Drops', phase: 1, priority: 'Primary' });
                 }
             }
             
@@ -774,25 +774,25 @@
                     const estriolValue = parseFloat(estriol);
                     if (estriolValue && estriolValue < 45) {
                         // BOTH low - use Bi-Est
-                        protocol.push({ product: 'Pro Bi-Est +', phase: 1, priority: 'Core' });
+                        protocol.push({ product: 'Pro Bi-Est +', phase: 1, priority: 'Primary' });
                         findings.push('Both estradiol and estriol suboptimal - Bi-Est (4:1 ratio) recommended');
                     } else {
                         // Only estradiol low - use estradiol alone
-                        protocol.push({ product: 'Pro Estradiol +', phase: 1, priority: 'Core' });
+                        protocol.push({ product: 'Pro Estradiol +', phase: 1, priority: 'Primary' });
                     }
                     
                     // PHYSICA SUPPORT FOR ESTROGEN PATHWAY
-                    protocol.push({ product: 'Endo Code F', phase: 1, priority: 'Core' });
-                    protocol.push({ product: 'Cohosh Intrinsic 114', phase: 1, priority: 'Support' });
-                    protocol.push({ product: 'Dong Quai Intrinsic 1428', phase: 1, priority: 'Support' });
+                    protocol.push({ product: 'Endo Code F', phase: 1, priority: 'Primary' });
+                    protocol.push({ product: 'Cohosh Intrinsic 114', phase: 1, priority: 'Secondary' });
+                    protocol.push({ product: 'Dong Quai Intrinsic 1428', phase: 1, priority: 'Secondary' });
                 }
                 
                 if (estriolEval && estriolEval.status === 'low' && !protocol.find(p => p.product.includes('Est'))) {
                     findings.push('Low estriol: Often associated with vaginal dryness, requires comprehensive estrogen support');
                     // QUICKSILVER ESTRIOL
-                    protocol.push({ product: 'Pro Estriol +', phase: 1, priority: 'Core' });
+                    protocol.push({ product: 'Pro Estriol +', phase: 1, priority: 'Primary' });
                     if (!protocol.find(p => p.product === 'Cohosh Intrinsic 114')) {
-                        protocol.push({ product: 'Cohosh Intrinsic 114', phase: 1, priority: 'Support' });
+                        protocol.push({ product: 'Cohosh Intrinsic 114', phase: 1, priority: 'Secondary' });
                     }
                 }
                 
@@ -801,10 +801,10 @@
                 if (testosteroneEval && (testosteroneEval.status === 'low' || testosteroneEval.status === 'suboptimal')) {
                     findings.push('Low testosterone in women: Associated with decreased libido, energy, and muscle mass');
                     // USE PHYSICA BOTANICALS - NO QUICKSILVER TESTOSTERONE EXISTS!
-                    protocol.push({ product: 'Maca Intrinsic', phase: 1, priority: 'Core' });
-                    protocol.push({ product: 'Licro Intrinsic', phase: 1, priority: 'Support' });
+                    protocol.push({ product: 'Maca Intrinsic', phase: 1, priority: 'Primary' });
+                    protocol.push({ product: 'Licro Intrinsic', phase: 1, priority: 'Secondary' });
                     if (!protocol.find(p => p.product === 'DHEA Liposomal Drops')) {
-                        protocol.push({ product: 'DHEA Liposomal Drops', phase: 1, priority: 'Support' });
+                        protocol.push({ product: 'DHEA Liposomal Drops', phase: 1, priority: 'Secondary' });
                     }
                 }
                 
@@ -818,24 +818,24 @@
                     if (ratio < 200) {
                         findings.push(`**CRITICAL PG/E2 RATIO (${pgE2Ratio}): ESTROGEN DOMINANCE CONFIRMED** - Optimal ratio ≥200. Immediate progesterone support required.`);
                         // QUICKSILVER PROGESTERONE - PRIMARY INTERVENTION
-                        protocol.push({ product: 'Pro Progesterone', phase: 1, priority: 'Core' });
+                        protocol.push({ product: 'Pro Progesterone', phase: 1, priority: 'Primary' });
                         // PHYSICA SUPPORT FOR PROGESTERONE PATHWAY
                         if (!protocol.find(p => p.product === 'Trifolo Intrinsic')) {
-                            protocol.push({ product: 'Trifolo Intrinsic', phase: 1, priority: 'Core' });
+                            protocol.push({ product: 'Trifolo Intrinsic', phase: 1, priority: 'Secondary' });
                         }
                         if (!protocol.find(p => p.product === 'Pregnenolone Liposomal Drops')) {
-                            protocol.push({ product: 'Pregnenolone Liposomal Drops', phase: 1, priority: 'Core' });
+                            protocol.push({ product: 'Pregnenolone Liposomal Drops', phase: 1, priority: 'Secondary' });
                         }
                         // ESTROGEN METABOLISM SUPPORT
                         if (!protocol.find(p => p.product === 'DIM Liposome')) {
-                            protocol.push({ product: 'DIM Liposome', phase: 1, priority: 'Support' });
+                            protocol.push({ product: 'DIM Liposome', phase: 1, priority: 'Secondary' });
                         }
                     } else if (ratio >= 200 && ratio < 400) {
                         findings.push(`Suboptimal Pg/E2 Ratio (${pgE2Ratio}): Progesterone support recommended for optimal hormonal balance.`);
                         // MODERATE PROGESTERONE SUPPORT
-                        protocol.push({ product: 'Pro Progesterone', phase: 1, priority: 'Core' });
+                        protocol.push({ product: 'Pro Progesterone', phase: 1, priority: 'Primary' });
                         if (!protocol.find(p => p.product === 'Trifolo Intrinsic')) {
-                            protocol.push({ product: 'Trifolo Intrinsic', phase: 1, priority: 'Support' });
+                            protocol.push({ product: 'Trifolo Intrinsic', phase: 1, priority: 'Secondary' });
                         }
                     }
                 }
@@ -843,21 +843,21 @@
                 if (progesteroneEval && (progesteroneEval.status === 'low' || progesteroneEval.status === 'suboptimal')) {
                     findings.push('Low progesterone: Indicative of progesterone insufficiency');
                     if (!protocol.find(p => p.product === 'Pro Progesterone')) {
-                        protocol.push({ product: 'Pro Progesterone', phase: 1, priority: 'Core' });
+                        protocol.push({ product: 'Pro Progesterone', phase: 1, priority: 'Primary' });
                     }
                     if (!protocol.find(p => p.product === 'Trifolo Intrinsic')) {
-                        protocol.push({ product: 'Trifolo Intrinsic', phase: 1, priority: 'Core' });
+                        protocol.push({ product: 'Trifolo Intrinsic', phase: 1, priority: 'Secondary' });
                     }
                     if (!protocol.find(p => p.product === 'Pregnenolone Liposomal Drops')) {
-                        protocol.push({ product: 'Pregnenolone Liposomal Drops', phase: 1, priority: 'Support' });
+                        protocol.push({ product: 'Pregnenolone Liposomal Drops', phase: 1, priority: 'Secondary' });
                     }
                 }
                 
                 if (menopausalStatus === 'Post-menopausal' || menopausalStatus === 'Peri-menopausal') {
                     if (!protocol.find(p => p.product === 'Endo Code F')) {
-                        protocol.push({ product: 'Endo Code F', phase: 1, priority: 'Core' });
+                        protocol.push({ product: 'Endo Code F', phase: 1, priority: 'Primary' });
                     }
-                    protocol.push({ product: 'Maca Intrinsic', phase: 1, priority: 'Support' });
+                    protocol.push({ product: 'Maca Intrinsic', phase: 1, priority: 'Secondary' });
                 }
             } else if (patientSex === 'Male') {
                 const testosteroneEval = evaluateMarker(testosterone, 20, 55, 3, 45);
@@ -865,18 +865,18 @@
                 if (testosteroneEval && (testosteroneEval.status === 'low' || testosteroneEval.status === 'suboptimal')) {
                     findings.push('Suboptimal testosterone: Requires male hormone support');
                     // PHYSICA SUPPORT ONLY - NO QUICKSILVER TESTOSTERONE EXISTS!
-                    protocol.push({ product: 'Endo Code M', phase: 1, priority: 'Core' });
-                    protocol.push({ product: 'Maca Intrinsic', phase: 1, priority: 'Core' });
-                    protocol.push({ product: 'Licro Intrinsic', phase: 1, priority: 'Support' });
+                    protocol.push({ product: 'Endo Code M', phase: 1, priority: 'Primary' });
+                    protocol.push({ product: 'Maca Intrinsic', phase: 1, priority: 'Primary' });
+                    protocol.push({ product: 'Licro Intrinsic', phase: 1, priority: 'Secondary' });
                     // Add DHEA support
                     if (!protocol.find(p => p.product === 'DHEA Liposomal Drops')) {
-                        protocol.push({ product: 'DHEA Liposomal Drops', phase: 1, priority: 'Support' });
+                        protocol.push({ product: 'DHEA Liposomal Drops', phase: 1, priority: 'Secondary' });
                     }
                 }
                 
                 if (dheaEval && dheaEval.status === 'low') {
                     if (!protocol.find(p => p.product === 'DHEA Liposomal Drops')) {
-                        protocol.push({ product: 'DHEA Liposomal Drops', phase: 1, priority: 'Core' });
+                        protocol.push({ product: 'DHEA Liposomal Drops', phase: 1, priority: 'Primary' });
                     }
                 }
             }
@@ -938,9 +938,10 @@
                 
                 <div class="protocol-card">
                     <div class="protocol-header">
-                        <div class="protocol-title">Phase 1: Drainage Foundation & Hormone Support</div>
-                        <div class="phase-badge">90-Day Protocol</div>
+                        <div class="protocol-title">✅ PRIMARY Protocol - Essential Foundation</div>
+                        <div class="phase-badge">90-Day Supply</div>
                     </div>
+                    <p style="color: #666; margin-bottom: 15px; font-style: italic;">These products are the essential foundation - direct hormone replacement, critical glandular support, and drainage pathway establishment.</p>
                     
                     <table class="product-table">
                         <thead>
@@ -954,11 +955,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            ${productDetails.map(p => `
+                            ${productDetails.filter(p => p.priority === 'Primary').map(p => `
                                 <tr>
                                     <td>
                                         <span class="product-name">${p.name}</span>
-                                        <span class="status-indicator status-${p.priority === 'Core' ? 'optimal' : 'suboptimal'}">${p.priority}</span>
+                                        <span class="status-indicator status-optimal">Primary</span>
                                     </td>
                                     <td class="dosing">${p.dosing}</td>
                                     <td>${p.form}</td>
@@ -971,9 +972,57 @@
                     </table>
                 </div>
                 
+                ${productDetails.filter(p => p.priority === 'Secondary').length > 0 ? `
+                <div class="protocol-card">
+                    <div class="protocol-header">
+                        <div class="protocol-title">💊 SECONDARY Protocol - Enhanced Support</div>
+                        <div class="phase-badge">90-Day Supply</div>
+                    </div>
+                    <p style="color: #666; margin-bottom: 15px; font-style: italic;">These products provide additional botanical support, metabolism enhancement, and precursor support to optimize outcomes.</p>
+                    
+                    <table class="product-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Dosing</th>
+                                <th>Form</th>
+                                <th>Qty</th>
+                                <th>Price/Unit</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${productDetails.filter(p => p.priority === 'Secondary').map(p => `
+                                <tr>
+                                    <td>
+                                        <span class="product-name">${p.name}</span>
+                                        <span class="status-indicator status-suboptimal">Secondary</span>
+                                    </td>
+                                    <td class="dosing">${p.dosing}</td>
+                                    <td>${p.form}</td>
+                                    <td>${p.bottles}</td>
+                                    <td>$${p.pricePerBottle.toFixed(2)}</td>
+                                    <td class="price">$${p.total.toFixed(2)}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+                ` : ''}
+                
                 <div class="total-section">
                     <div class="total-row">
-                        <span>Subtotal (90-Day Supply):</span>
+                        <span>PRIMARY Protocol Subtotal:</span>
+                        <span>$${productDetails.filter(p => p.priority === 'Primary').reduce((sum, p) => sum + p.total, 0).toFixed(2)}</span>
+                    </div>
+                    ${productDetails.filter(p => p.priority === 'Secondary').length > 0 ? `
+                    <div class="total-row">
+                        <span>SECONDARY Protocol Subtotal:</span>
+                        <span>$${productDetails.filter(p => p.priority === 'Secondary').reduce((sum, p) => sum + p.total, 0).toFixed(2)}</span>
+                    </div>
+                    ` : ''}
+                    <div class="total-row">
+                        <span>Total Before Discount:</span>
                         <span>$${subtotal.toFixed(2)}</span>
                     </div>
                     ${applyDiscount ? `
