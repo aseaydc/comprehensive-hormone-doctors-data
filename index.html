@@ -368,12 +368,23 @@
                 box-shadow: none;
             }
             
+            /* Hide all input sections when printing */
             .section {
+                display: none !important;
+            }
+            
+            /* Only show the results */
+            .results {
+                display: block !important;
+            }
+            
+            .results .section {
+                display: block !important;
                 page-break-inside: avoid;
             }
             
-            button {
-                display: none;
+            button, .button-container {
+                display: none !important;
             }
         }
     </style>
@@ -521,7 +532,7 @@
         const products = {
             // QUICKSILVER SCIENTIFIC - ACTUAL HORMONE PRODUCTS ONLY (NO MADE-UP PRODUCTS!)
             // 30mL bottle = ~150 pumps total (0.2mL per pump)
-            'QS Peace Progesterone Serum': { 
+            'Pro Progesterone': { 
                 retail: 52.00, 
                 dosing: '3 pumps 2x daily (24mg)', 
                 form: '1 oz (30mL) serum', 
@@ -530,7 +541,7 @@
                 brand: 'Quicksilver', 
                 note: '8mg per 2 pumps. Target: 20-30mg/day per Doctor\'s Data' 
             },
-            'QS Bi-Est Serum': { 
+            'Pro Bi-Est +': { 
                 retail: 50.00, 
                 dosing: '2 pumps 1x daily (1.25mg)', 
                 form: '1 oz (30mL) serum', 
@@ -539,7 +550,7 @@
                 brand: 'Quicksilver', 
                 note: '4:1 ratio (1mg E3 + 0.25mg E2). Target: 1mg/day per Doctor\'s Data' 
             },
-            'QS Estradiol Serum': { 
+            'Pro Estradiol +': { 
                 retail: 48.00, 
                 dosing: '2 pumps 2x daily (0.5mg)', 
                 form: '1 oz (30mL) serum', 
@@ -548,7 +559,7 @@
                 brand: 'Quicksilver', 
                 note: '0.25mg per 2 pumps = 0.5mg/day' 
             },
-            'QS Estriol Serum': { 
+            'Pro Estriol +': { 
                 retail: 48.00, 
                 dosing: '2 pumps 1x daily (1mg)', 
                 form: '1 oz (30mL) serum', 
@@ -556,15 +567,6 @@
                 pumpsPerBottle: 150,
                 brand: 'Quicksilver', 
                 note: '1mg per 2 pumps = 1mg/day' 
-            },
-            'QS DHEA+ Female Hormone Tonic': { 
-                retail: 55.00, 
-                dosing: '2 pumps 2x daily', 
-                form: '1.7 oz (50mL) liquid', 
-                pumpsPerDay: 4,
-                pumpsPerBottle: 250,
-                brand: 'Quicksilver', 
-                note: 'Liposomal DHEA with adaptogenic herbs for women' 
             },
             
             // Physica Energetics Sarcode Organotherapy (from PCC)
@@ -772,11 +774,11 @@
                     const estriolValue = parseFloat(estriol);
                     if (estriolValue && estriolValue < 45) {
                         // BOTH low - use Bi-Est
-                        protocol.push({ product: 'QS Bi-Est Serum', phase: 1, priority: 'Core' });
+                        protocol.push({ product: 'Pro Bi-Est +', phase: 1, priority: 'Core' });
                         findings.push('Both estradiol and estriol suboptimal - Bi-Est (4:1 ratio) recommended');
                     } else {
                         // Only estradiol low - use estradiol alone
-                        protocol.push({ product: 'QS Estradiol Serum', phase: 1, priority: 'Core' });
+                        protocol.push({ product: 'Pro Estradiol +', phase: 1, priority: 'Core' });
                     }
                     
                     // PHYSICA SUPPORT FOR ESTROGEN PATHWAY
@@ -788,7 +790,7 @@
                 if (estriolEval && estriolEval.status === 'low' && !protocol.find(p => p.product.includes('Est'))) {
                     findings.push('Low estriol: Often associated with vaginal dryness, requires comprehensive estrogen support');
                     // QUICKSILVER ESTRIOL
-                    protocol.push({ product: 'QS Estriol Serum', phase: 1, priority: 'Core' });
+                    protocol.push({ product: 'Pro Estriol +', phase: 1, priority: 'Core' });
                     if (!protocol.find(p => p.product === 'Cohosh Intrinsic 114')) {
                         protocol.push({ product: 'Cohosh Intrinsic 114', phase: 1, priority: 'Support' });
                     }
@@ -816,7 +818,7 @@
                     if (ratio < 200) {
                         findings.push(`**CRITICAL PG/E2 RATIO (${pgE2Ratio}): ESTROGEN DOMINANCE CONFIRMED** - Optimal ratio ≥200. Immediate progesterone support required.`);
                         // QUICKSILVER PROGESTERONE - PRIMARY INTERVENTION
-                        protocol.push({ product: 'QS Peace Progesterone Serum', phase: 1, priority: 'Core' });
+                        protocol.push({ product: 'Pro Progesterone', phase: 1, priority: 'Core' });
                         // PHYSICA SUPPORT FOR PROGESTERONE PATHWAY
                         if (!protocol.find(p => p.product === 'Trifolo Intrinsic')) {
                             protocol.push({ product: 'Trifolo Intrinsic', phase: 1, priority: 'Core' });
@@ -831,7 +833,7 @@
                     } else if (ratio >= 200 && ratio < 400) {
                         findings.push(`Suboptimal Pg/E2 Ratio (${pgE2Ratio}): Progesterone support recommended for optimal hormonal balance.`);
                         // MODERATE PROGESTERONE SUPPORT
-                        protocol.push({ product: 'QS Peace Progesterone Serum', phase: 1, priority: 'Core' });
+                        protocol.push({ product: 'Pro Progesterone', phase: 1, priority: 'Core' });
                         if (!protocol.find(p => p.product === 'Trifolo Intrinsic')) {
                             protocol.push({ product: 'Trifolo Intrinsic', phase: 1, priority: 'Support' });
                         }
@@ -840,8 +842,8 @@
                 
                 if (progesteroneEval && (progesteroneEval.status === 'low' || progesteroneEval.status === 'suboptimal')) {
                     findings.push('Low progesterone: Indicative of progesterone insufficiency');
-                    if (!protocol.find(p => p.product === 'QS Peace Progesterone Serum')) {
-                        protocol.push({ product: 'QS Peace Progesterone Serum', phase: 1, priority: 'Core' });
+                    if (!protocol.find(p => p.product === 'Pro Progesterone')) {
+                        protocol.push({ product: 'Pro Progesterone', phase: 1, priority: 'Core' });
                     }
                     if (!protocol.find(p => p.product === 'Trifolo Intrinsic')) {
                         protocol.push({ product: 'Trifolo Intrinsic', phase: 1, priority: 'Core' });
